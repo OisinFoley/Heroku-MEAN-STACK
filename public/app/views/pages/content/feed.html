@@ -8,10 +8,10 @@
 </Div>
 
 	<div ng-show="feed.loaded" id="ContainerNewPosts" style="left:5vw;position:absolute" class="container container-fluid">
-		<div ng-repeat="article in feed.myfeeditems" class="row">		
+		<div ng-repeat="article in feed.myfeeditems" class="row">
 
 			<div class="col-lg-11 redShadow"  style="padding:10px" >
-				<a href="{{article.url}}" target="_blank"><image style="width:100%" ng-src="{{article.urlToImage}}"></image></a>
+				<a href="{{article.url}}" target="_blank"><image style="width:100%" ng-src="https{{article.urlToImage.indexOf('https')==-1?article.urlToImage.substr(4):article.urlToImage.substr(5) }}"></image></a>
 
 				<table class="col-lg-12 " style="background: #f43f3f">
 				<div >
@@ -25,35 +25,35 @@
 					<tr>
 						<th>
 							<!-- use ng-style aer for this -->
-						  <form  style="padding:15px" class="col-lg-2" name="likeForm" ng-submit="feed.registerArticleLike(article);" >                    					  
-						  <button ng-model="article.title" style="background:pink"  class="btn btn-success btn-md"><i class='fa fa-heart'></i><span > LIKE </span> </button> 
+						  <form  style="padding:15px" class="col-lg-2" name="likeForm" ng-submit="feed.registerArticleLike(article);" >
+						  <button ng-model="article.title" style="background:pink"  class="btn btn-success btn-md"><i class='fa fa-heart'></i><span > LIKE </span> </button>
 
 						  <!-- <div ng-show="feed.likeResponseMsg">{{feed.likeResponseMsg}}</div>					 -->
-							<div >{{feed.likeResponseMsg}}	</div>					
-		                  </form>	                 
-						  
+							<div >{{feed.likeResponseMsg}}	</div>
+		                  </form>
+
 
 						</th>
 
 
 						<th class="col-lg-12">
-							<div >									
-								
+							<div >
+
 								<!-- <a  href='' ng-click='hideComments = !hideComments'> -->
-								<div style="color:#FAEBD7;cursor:pointer" ng-click='hideComments = !hideComments' class="sliding-middle-out"  >COMMENT <i class="fa fa-comments-o" aria-hidden="true"></i> </div>							
-								</a>  		                	                 
+								<div style="color:#FAEBD7;cursor:pointer" ng-click='hideComments = !hideComments' class="sliding-middle-out"  >COMMENT <i class="fa fa-comments-o" aria-hidden="true"></i> </div>
+								</a>
 							</div>
 						</th>
 					</tr>
 					<tr>
-						
+
 					</tr>
 				</table>
 				<div ng-hide='!hideComments' style="padding:35px;margin-top:50px;">
 				<!-- <div style="height:100px"></div> -->
 					<div >
 						<div class='col-sm-1'>
-					
+
 						<div style="padding:10px;background: yellow">
 							<img style="top:10vh" class='img-responsive user-photo' ng-src='assets/style-images/bath.png'>
 						</div>
@@ -66,51 +66,47 @@
 
 
 								<form name="commentForm" ng-submit="feed.newComment(article, CommentData, commentForm.$valid);" >
-								<div ng-class="{ 'has-success':!commentForm.postText.$pristine}">               
+								<div ng-class="{ 'has-success':!commentForm.postText.$pristine}">
 
 									<i class="fa fa-comment-o" aria-hidden="true"></i>
 									<input class="form-control" type="text" name="commentText" placeholder="Add to the discussion" ng-model="feed.CommentData.postText" ng-minlength="3" ng-maxlength="200" required></input>
-						      
+
 									<!-- required displays err popup on submit but we want our own angular behaviour -->
 									<!-- only display if the form has been modified and there's a requirement error -->
 									<!-- we need the OR statement or else msg will never display if we go directly to submit when form is pristine -->
 									<p class="help-block" ng-show="(!commentForm.postText.$pristine && commentForm.postText.$error.required) || (commentForm.$submitted && commentForm.postText.$error.required)">You need to write something...
 									</p>
 									<!-- we will get error message in all scenarios except those pertaining to length if we don't include the $error.minlength etc -->
-									<ul ng-show="(!commentForm.title.$pristine && commentForm.postText.$error.minlength) || (!commentForm.postText.$pristine && commentForm.postText.$error.maxlength)" class="help-block">				
+									<ul ng-show="(!commentForm.title.$pristine && commentForm.postText.$error.minlength) || (!commentForm.postText.$pristine && commentForm.postText.$error.maxlength)" class="help-block">
 										<li>Must be between 3 and 200 characters long.</li>
 								  	</ul>
 
 								  	<div class='panel-body'>
 									<!-- next line well well-lg adds curved box  -->
-										<div class='well well-lg'>	
+										<div class='well well-lg'>
 										<button class='btn btn-warning  col-lg-offset-4 ' >Submit</button>
 										</div>
-											
-									</div><!-- /panel-body -->											   
-									<div ng-show="feed.commentResponseMsg">{{feed.commentResponseMsg}}</div>				
+
+									</div><!-- /panel-body -->
+									<div ng-show="feed.commentResponseMsg">{{feed.commentResponseMsg}}</div>
 										<!-- <div >{{feed.commentResponseMsg}} abc</div>					 -->
 
 								</div>
-								</form>	
-									
+								</form>
+
 								</div>
 
-								
-							</div><!-- /panel panel-default -->				
-						</div><!-- /col-sm-5 -->					
 
-						
+							</div><!-- /panel panel-default -->
+						</div><!-- /col-sm-5 -->
+
+
 					</div>
-				</div><!-- /row -->					
+				</div><!-- /row -->
 			</div>
-		</div>				 				    
+		</div>
 	</div>
 	<!-- <div ng-model="feed.myWelcome" style="margin-top: 400px">
 		planned popup greeting to be displayed after user's first logon
 	</div> -->
 </div>
-
-
-
-
