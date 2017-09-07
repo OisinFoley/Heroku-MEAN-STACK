@@ -41,7 +41,8 @@ var app = this;
 
 				
 
-		articleData.user_uuid = "8a357e7f-161c-4b56-814a-8fe08830843e";
+		//articleData.user_uuid = "8a357e7f-161c-4b56-814a-8fe08830843e";
+		articleData.user_uuid = app.uuid;
 		app.loading  = true;
 		//console.log("%s",JSON.stringify(articleData));
 		
@@ -76,8 +77,9 @@ var app = this;
 		article.postText = app.CommentData.postText;
 		//app.article.user_uuid = app.uuid;
 
+		articleData.user_uuid = app.uuid;
 		//having a CORS issue when logged in so have hardcoded a user's uuid
-		article.user_uuid = "8a357e7f-161c-4b56-814a-8fe08830843e";
+		//article.user_uuid = "8a357e7f-161c-4b56-814a-8fe08830843e";
 		
 	
 		if(valid){						

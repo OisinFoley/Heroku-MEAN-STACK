@@ -97,8 +97,16 @@ while they interact with the app
 	authInterceptorsFactory.request = function(config){
 		var token = AuthToken.getToken();
 
-		//if token exists, configure/tell our header that its access-token key is the object named 'token'
-		if(token) config.headers['x-access-token'] = token;
+		console.log("AAA : %s", JSON.stringify(config));
+		console.log("BBB : %s", JSON.stringify(config.url));
+
+
+		
+
+
+		if(!config.url.includes('newsapi.org')){
+			config.headers['x-access-token'] = token;
+		}
 
 		return config;
 	}
