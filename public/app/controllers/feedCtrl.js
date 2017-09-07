@@ -116,7 +116,7 @@ var app = this;
 
 			$http({
 				method: 'GET',
-				url: 'http://newsapi.org/v1/articles?source=entertainment-weekly&sortBy=top&apiKey=dbfc3f956d3d4b5caac1017cc5e18a9d'			
+				url: 'https://newsapi.org/v1/articles?source=entertainment-weekly&sortBy=top&apiKey=dbfc3f956d3d4b5caac1017cc5e18a9d'			
 			}).then(function successCallback(response) {
 													
 				app.myfeeditems = response.data.articles;			
